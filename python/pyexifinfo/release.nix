@@ -19,5 +19,7 @@ buildPythonPackage rec {
    meta = {
      homepage = https://github.com/guinslym/pyexifinfo;
      description = "Yet Another python wrapper for Phil Harvey's Exiftool";
+     license = lib.licenses.gpl2;
+     maintainers = with lib.maintainers; [ ardumont ];
   };
 }
