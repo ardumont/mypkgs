@@ -6,7 +6,7 @@ with import <nixpkgs> {};
 # pr to fix it: https://github.com/supermihi/pytaglib/pull/56
 let python-fixed =
   let packageOverrides = self: super: {
-      pytaglib = super.pytaglib.overridePythonAttrs(old: rec {
+      pytaglib = super.pytaglib.overridePythonAttrs(old: {
         doCheck = false;
       });
     };
