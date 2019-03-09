@@ -1,4 +1,4 @@
-{ lib, pkgs, buildPythonPackage, fetchPypi, exiftool }:
+{ lib, buildPythonPackage, fetchPypi, exiftool }:
 
 buildPythonPackage rec {
   pname="pyexifinfo";

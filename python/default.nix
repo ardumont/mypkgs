@@ -15,7 +15,6 @@ in
 (
 let
   pyexifinfo = pkgs.callPackage ./pyexifinfo/release.nix {
-    pkgs = pkgs;
     buildPythonPackage = pkgs.python37Packages.buildPythonPackage;
     fetchPypi = pkgs.python37Packages.fetchPypi;
   };
