@@ -15,12 +15,12 @@ let
     # foo = callPackage /path/to/foo { }; # where directory foo contains a default.nix
     # harold = callPackage /path/to/harold/harold.nix { };
     pyexifinfo = pkgs.callPackage ./python/pyexifinfo/release.nix {
-      buildPythonPackage = pkgs.python37Packages.buildPythonPackage;
-      fetchPypi = pkgs.python37Packages.fetchPypi;
+      buildPythonPackage = pkgs.python36Packages.buildPythonPackage;
+      fetchPypi = pkgs.python36Packages.fetchPypi;
     };
     ardumont-pytools = pkgs.callPackage ./python/ardumont-pytools/release.nix {
-      pkgs = pkgs.python37Packages;
-      buildPythonPackage = pkgs.python37Packages.buildPythonPackage;
+      pkgs = pkgs.python36Packages;
+      buildPythonPackage = pkgs.python36Packages.buildPythonPackage;
       pyexifinfo = pyexifinfo;
     };
   };
