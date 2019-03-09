@@ -20,16 +20,11 @@ let
     fetchPypi = pkgs.python37Packages.fetchPypi;
   };
 
-  ardumont-pytools = pkgs.python37Packages.buildPythonPackage rec {
-    name = "ardumont-pytools";
-    src = /home/tony/repo/private/ardumont-pytools;
-    doCheck = false;  # none (bad me T.T)
-    propagatedBuildInputs = with python-fixed.pkgs; [
-      click vcversioner celery pyinotify exifread pyexifinfo
-      python-dateutil tvdb_api tvnamer arrow
-      pyaml
-      pytaglib
-    ];
+  ardumont-pytools = pkgs.callPackage ./ardumont-pytools/release.nix {
+    pkgs = python-fixed.pkgs;
+    buildPythonPackage = pkgs.python37Packages.buildPythonPackage;
+    pyexifinfo = pyexifinfo;
   };
+
   in pkgs.python3.withPackages (ps: [ ardumont-pytools ])
 ).env
