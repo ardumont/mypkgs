@@ -11,42 +11,25 @@ let python-fixed =
       });
     };
   in pkgs.python3.override {inherit packageOverrides;};
-in with python-fixed; (
+in
+(
 let
-  pyexifinfo = pkgs.buildPythonPackage rec {
-    pname="pyexifinfo";
-    version = "0.4.0";
-
-     src = pkgs.fetchPypi {
-       inherit pname version;
-       sha256 = "1jdxskyz2vwsiha8dm7pcg59srzcybwqh9dnwsxpgzlkqnrk92sp";
-     };
-
-    propagatedBuildInputs = with pkgs; [
-      exiftool
-    ];
-
-     # patch setup.py so that the embedded check on exiftool in setup.py passes
-     postUnpack = ''
-sed -e 's,"exiftool","${exiftool}/bin/exiftool",g' -i pyexifinfo-${version}/setup.py
-     '';
-
-     meta = {
-       homepage = https://github.com/guinslym/pyexifinfo;
-       description = "Yet Another python wrapper for Phil Harvey's Exiftool";
-    };
+  pyexifinfo = pkgs.callPackage ./pyexifinfo/release.nix {
+    pkgs = pkgs;
+    buildPythonPackage = pkgs.python37Packages.buildPythonPackage;
+    fetchPypi = pkgs.python37Packages.fetchPypi;
   };
 
-  ardumont-pytools = pkgs.buildPythonPackage rec {
+  ardumont-pytools = pkgs.python37Packages.buildPythonPackage rec {
     name = "ardumont-pytools";
     src = /home/tony/repo/private/ardumont-pytools;
     doCheck = false;  # none (bad me T.T)
-    propagatedBuildInputs = with pkgs; [
+    propagatedBuildInputs = with python-fixed.pkgs; [
       click vcversioner celery pyinotify exifread pyexifinfo
       python-dateutil tvdb_api tvnamer arrow
       pyaml
       pytaglib
     ];
   };
-  in withPackages (ps: [ ardumont-pytools ])
+  in pkgs.python3.withPackages (ps: [ ardumont-pytools ])
 ).env
