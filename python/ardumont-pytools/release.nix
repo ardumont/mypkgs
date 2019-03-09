@@ -11,7 +11,6 @@ buildPythonPackage rec {
     pyexifinfo
     click vcversioner celery pyinotify exifread python-dateutil
     tvdb_api tvnamer arrow pyaml
-    pytaglib
   ];
 
   meta = {
