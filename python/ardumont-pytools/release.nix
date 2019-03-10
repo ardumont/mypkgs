@@ -1,4 +1,4 @@
-{ lib, pkgs, buildPythonPackage, pyexifinfo }:
+{ lib, pkgs, buildPythonPackage, pyexifinfo, inotify-tools }:
 
 buildPythonPackage rec {
   name = "ardumont-pytools";
@@ -10,7 +10,7 @@ buildPythonPackage rec {
   propagatedBuildInputs = with pkgs; [
     pyexifinfo
     click vcversioner celery pyinotify exifread python-dateutil
-    tvdb_api tvnamer arrow pyaml
+    tvdb_api tvnamer arrow pyaml inotify-tools
   ];
 
   meta = {

@@ -22,6 +22,7 @@ let
       pkgs = pkgs.python36Packages;
       buildPythonPackage = pkgs.python36Packages.buildPythonPackage;
       pyexifinfo = pyexifinfo;
+      inotify-tools = pkgs.inotify-tools;
     };
   };
 in self
