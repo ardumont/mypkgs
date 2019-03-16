@@ -1,7 +1,7 @@
 { lib, buildPythonPackage, fetchPypi, inotify-tools }:
 
 buildPythonPackage rec {
-  pname="inotify_simple";
+  pname = "inotify_simple";
   version = "1.1.8";
 
    src = fetchPypi {

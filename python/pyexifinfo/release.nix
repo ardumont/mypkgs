@@ -1,7 +1,7 @@
 { lib, buildPythonPackage, fetchPypi, exiftool }:
 
 buildPythonPackage rec {
-  pname="pyexifinfo";
+  pname = "pyexifinfo";
   version = "0.4.0";
 
    src = fetchPypi {

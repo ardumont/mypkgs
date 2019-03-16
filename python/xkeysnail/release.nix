@@ -1,7 +1,7 @@
 { lib, pkgs, buildPythonPackage, fetchPypi, inotify-simple }:
 
 buildPythonPackage rec {
-  pname="xkeysnail";
+  pname = "xkeysnail";
   version = "0.1.0";
 
    src = fetchPypi {
