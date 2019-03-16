@@ -32,5 +32,11 @@ let
       fetchPypi = packages.fetchPypi;
       inotify-tools = pkgs.inotify-tools;
     };
+    xkeysnail = pkgs.callPackage ./python/xkeysnail/release.nix {
+      pkgs = packages;
+      buildPythonPackage = packages.buildPythonPackage;
+      fetchPypi = packages.fetchPypi;
+      inotify-simple = inotify-simple;
+    };
   };
 in self
