@@ -38,5 +38,10 @@ let
       fetchPypi = packages.fetchPypi;
       inotify-simple = inotify-simple;
     };
+    async_http = pkgs.callPackage ./python/async_http/release.nix {
+      pkgs = packages;
+      buildPythonPackage = packages.buildPythonPackage;
+      fetchPypi = packages.fetchPypi;
+    };
   };
 in self
