@@ -11,12 +11,16 @@ buildPythonPackage rec {
 
   doCheck = false;  # no test (bad me T.T)
 
+  # buildInputs = [ asynctest ];
   propagatedBuildInputs = with pkgs; [
-    urwid aiohttp pyxdg blinker natsort setproctitle
-    urwidtrees  # need override
-    # pygeoip  # not sure it's the right one
+    aiohttp pyxdg blinker natsort setproctitle
+    urwid urwidtrees  # need override
+    pygeoip  # not sure it's the right one
     GeoIP    # not sure also
-    async_http  # apparently not packaged yet
+    # below are the one not packaged yet (when uncommented, packaged here)
+    async_http
+    # async_timeout
+    # maxminddb
   ];
 
   meta = {
