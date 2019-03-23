@@ -10,9 +10,9 @@ let
   packages = pkgs.python36Packages;
   # nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs-unstable
   # nix-channel --update
+  unstable = import <nixpkgs-unstable> {};
   # build specifically this override with a nixpkgs-unstable version
-  myPythonOverride = let unstable = import <nixpkgs-unstable> {};
-  in unstable.pkgs.python36Packages.override {
+  myPythonOverride = unstable.pkgs.python36Packages.override {
     overrides = self: super: {
       urwidtrees = super.urwidtrees.overrideAttrs (old: rec {
         version = "1.0.3.dev0";
@@ -60,10 +60,11 @@ let
       fetchPypi = packages.fetchPypi;
       inotify-tools = pkgs.inotify-tools;
     };
-    xkeysnail = pkgs.callPackage ./python/xkeysnail/release.nix {
-      pkgs = packages;
-      buildPythonPackage = packages.buildPythonPackage;
-      fetchPypi = packages.fetchPypi;
+    xkeysnail = let pkgs = unstable.pkgs;
+    in pkgs.callPackage ./python/xkeysnail/release.nix {
+      pkgs = pkgs.python36Packages;
+      buildPythonPackage = pkgs.python36Packages.buildPythonPackage;
+      fetchPypi = pkgs.python36Packages.fetchPypi;
       inotify-simple = inotify-simple;
     };
     async_http = pkgs.callPackage ./python/async_http/release.nix {
