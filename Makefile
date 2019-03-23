@@ -5,6 +5,3 @@ NIXPKGS=$(HOME)/repo/public/nixpkgs
 
 xkeysnail:
 	nix-build -I nixpkgs=$(NIXPKGS) -A $@
-
-stig:
-	nix-build -I nixpkgs=$(NIXPKGS) -A $@

@@ -8,7 +8,11 @@ let
   # issue: https://github.com/supermihi/pytaglib/pull/46
   # pr to fix it: https://github.com/supermihi/pytaglib/pull/56
   packages = pkgs.python36Packages;
-  myPythonOverride = packages.override {
+  # nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs-unstable
+  # nix-channel --update
+  # build specifically this override with a nixpkgs-unstable version
+  myPythonOverride = let unstable = import <nixpkgs-unstable> {};
+  in unstable.pkgs.python36Packages.override {
     overrides = self: super: {
       urwidtrees = super.urwidtrees.overrideAttrs (old: rec {
         version = "1.0.3.dev0";
