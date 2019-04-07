@@ -1,22 +1,14 @@
 { system ? builtins.currentSystem }:
 
+# if we need for some reason nixpkgs-unstable, mutate the environment with
+# nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs-unstable
+# nix-channel --update
+
 let
   pkgs = import <nixpkgs> { inherit system; };
   callPackage = pkgs.lib.callPackagesWith (pkgs // self);
-  # override pytaglib in python interpreter to inhibit
-  # the tests as 1 fail (because it missed 1 file in the pypi package)
-  # issue: https://github.com/supermihi/pytaglib/pull/46
-  # pr to fix it: https://github.com/supermihi/pytaglib/pull/56
   packages = pkgs.python36Packages;
-  # nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs-unstable
-  # nix-channel --update
   self = rec {
-    # if this is used a dependency for another haskellPackage you
-    # will need to redefine "pkgs.haskellPackages.callPackage",
-    # but for simple cases this is sufficient.
-    # jot = pkgs.haskellPackages.callPackage /home/amy/jot/jot.nix { };
-    # foo = callPackage /path/to/foo { }; # where directory foo contains a default.nix
-    # harold = callPackage /path/to/harold/harold.nix { };
     # dependency for ardumont-pytools
     pyexifinfo = pkgs.callPackage ./python/pyexifinfo/release.nix {
       buildPythonPackage = packages.buildPythonPackage;
@@ -59,9 +51,7 @@ let
       buildPythonPackage = packages.buildPythonPackage;
       fetchPypi = packages.fetchPypi;
     };
-    stig =
-    let # nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs-unstable
-        # nix-channel --update
+    stig = let
       unstable = import <nixpkgs-unstable> {};
       # build specifically this override with a nixpkgs-unstable version
       myPythonOverride = unstable.pkgs.python36Packages.override {
