@@ -10,7 +10,7 @@ buildPythonPackage rec {
   propagatedBuildInputs = with pkgs; [
     pyexifinfo
     click vcversioner celery pyinotify exifread python-dateutil
-    tvdb_api tvnamer arrow pyaml inotify-tools mutagen
+    tvdb_api tvnamer arrow pyaml inotify-tools mutagen msgpack
   ];
 
   meta = {
