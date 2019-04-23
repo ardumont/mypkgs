@@ -14,6 +14,7 @@ let
       buildPythonPackage = packages.buildPythonPackage;
       fetchPypi = packages.fetchPypi;
     };
+    emacs-powerline = pkgs.callPackage ./emacs/emacs-powerline/release.nix { };
     ardumont-pytools =
       let myPythonOverride = pkgs.python36Packages.override {
             overrides = self: super: {
