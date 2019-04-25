@@ -38,13 +38,10 @@ let
       fetchPypi = packages.fetchPypi;
       inotify-tools = pkgs.inotify-tools;
     };
-    xkeysnail =
-      let unstable = import <nixpkgs-unstable> {};
-      pkgs = unstable.pkgs;
-      in pkgs.callPackage ./python/xkeysnail/release.nix {
-        pkgs = pkgs.python36Packages;
-        buildPythonPackage = pkgs.python36Packages.buildPythonPackage;
-        fetchPypi = pkgs.python36Packages.fetchPypi;
+    xkeysnail = pkgs.callPackage ./python/xkeysnail/release.nix {
+        pkgs = packages;
+        buildPythonPackage = packages.buildPythonPackage;
+        fetchPypi = packages.fetchPypi;
         inotify-simple = inotify-simple;
       };
     async_http = pkgs.callPackage ./python/async_http/release.nix {
