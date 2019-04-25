@@ -9,12 +9,12 @@ let
   callPackage = pkgs.lib.callPackagesWith (pkgs // self);
   packages = pkgs.python36Packages;
   self = rec {
+    emacs-powerline = pkgs.callPackage ./emacs/emacs-powerline/release.nix { };
     # dependency for ardumont-pytools
     pyexifinfo = pkgs.callPackage ./python/pyexifinfo/release.nix {
       buildPythonPackage = packages.buildPythonPackage;
       fetchPypi = packages.fetchPypi;
     };
-    emacs-powerline = pkgs.callPackage ./emacs/emacs-powerline/release.nix { };
     ardumont-pytools =
       let myPythonOverride = packages.override {
             overrides = self: super: {
