@@ -50,9 +50,7 @@ let
       fetchPypi = packages.fetchPypi;
     };
     stig = let
-      unstable = import <nixpkgs-unstable> {};
-      # build specifically this override with a nixpkgs-unstable version
-      myPythonOverride = unstable.pkgs.python36Packages.override {
+      myPythonOverride = packages.override {
         overrides = self: super: {
           urwidtrees = super.urwidtrees.overrideAttrs (old: rec {
             version = "1.0.3.dev0";
