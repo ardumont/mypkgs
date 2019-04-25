@@ -16,7 +16,7 @@ let
     };
     emacs-powerline = pkgs.callPackage ./emacs/emacs-powerline/release.nix { };
     ardumont-pytools =
-      let myPythonOverride = pkgs.python36Packages.override {
+      let myPythonOverride = packages.override {
             overrides = self: super: {
               pytest-xdist = super.pytest-xdist.overrideAttrs(old: {
                 doCheck = false;  # tests fail for some reasons
@@ -26,11 +26,11 @@ let
           };
         in
         pkgs.callPackage ./python/ardumont-pytools/release.nix {
-        pkgs = packages;
-        buildPythonPackage = packages.buildPythonPackage;
-        pyexifinfo = pyexifinfo;
-        inotify-tools = pkgs.inotify-tools;
-        mutagen = myPythonOverride.mutagen;
+          pkgs = packages;
+          buildPythonPackage = packages.buildPythonPackage;
+          pyexifinfo = pyexifinfo;
+          inotify-tools = pkgs.inotify-tools;
+          mutagen = myPythonOverride.mutagen;
       };
     # dependency for xkeysnail
     inotify-simple = pkgs.callPackage ./python/inotify_simple/release.nix {
