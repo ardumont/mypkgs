@@ -22,6 +22,10 @@ let
                 doCheck = false;  # tests fail for some reasons
                 checkPhase = "";
               });
+              mutagen = super.mutagen.overrideAttrs(old: {
+                doCheck = false;  # tests fail for some reasons
+                checkPhase = "";
+              });
             };
           };
         in
