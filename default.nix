@@ -16,7 +16,10 @@ let
       fetchPypi = packages.fetchPypi;
     };
     ardumont-pytools =
-      let myPythonOverride = packages.override {
+      let unstable = import <nixpkgs-unstable> {};
+          pkgs = unstable.pkgs;
+          packages = pkgs.python36Packages;
+          myPythonOverride = packages.override {
             overrides = self: super: {
               pytest-xdist = super.pytest-xdist.overrideAttrs(old: {
                 doCheck = false;  # tests fail for some reasons
