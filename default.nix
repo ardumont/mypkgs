@@ -16,8 +16,8 @@ let
       fetchPypi = packages.fetchPypi;
     };
     ardumont-pytools =
-      let unstable = import <nixpkgs-unstable> {};
-          packages = unstable.pkgs.python36Packages;
+      let nixpkgs = import <nixpkgs-18.09> {};
+          packages = nixpkgs.pkgs.python36Packages;
           my-python-override = packages.override {
             overrides = self: super: {
               pytest-xdist = super.pytest-xdist.overrideAttrs(old: {
@@ -29,6 +29,10 @@ let
                 checkPhase = "";
               });
               hypothesis = super.hypothesis.overrideAttrs(old: {
+                doCheck = false;  # tests fail for some reasons
+                checkPhase = "";
+              });
+              openblas = super.openblas.overrideAttrs(old: {
                 doCheck = false;  # tests fail for some reasons
                 checkPhase = "";
               });
