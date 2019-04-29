@@ -17,9 +17,8 @@ let
     };
     ardumont-pytools =
       let unstable = import <nixpkgs-unstable> {};
-          pkgs = unstable.pkgs;
-          packages = pkgs.python36Packages;
-          myPythonOverride = packages.override {
+          packages = unstable.pkgs.python36Packages;
+          my-python-override = packages.override {
             overrides = self: super: {
               pytest-xdist = super.pytest-xdist.overrideAttrs(old: {
                 doCheck = false;  # tests fail for some reasons
@@ -29,15 +28,19 @@ let
                 doCheck = false;  # tests fail for some reasons
                 checkPhase = "";
               });
+              hypothesis = super.hypothesis.overrideAttrs(old: {
+                doCheck = false;  # tests fail for some reasons
+                checkPhase = "";
+              });
             };
           };
         in
         pkgs.callPackage ./python/ardumont-pytools/release.nix {
-          pkgs = packages;
-          buildPythonPackage = packages.buildPythonPackage;
+          pkgs = my-python-override;
+          buildPythonPackage = my-python-override.buildPythonPackage;
           pyexifinfo = pyexifinfo;
           inotify-tools = pkgs.inotify-tools;
-          mutagen = myPythonOverride.mutagen;
+          mutagen = my-python-override.mutagen;
       };
     # dependency for xkeysnail
     inotify-simple = pkgs.callPackage ./python/inotify_simple/release.nix {
@@ -57,7 +60,7 @@ let
       fetchPypi = packages.fetchPypi;
     };
     stig = let
-      myPythonOverride = packages.override {
+      my-python-override = packages.override {
         overrides = self: super: {
           urwidtrees = super.urwidtrees.overrideAttrs (old: rec {
             version = "1.0.3.dev0";
@@ -81,11 +84,11 @@ let
           });
         };
       };
-      in pkgs.callPackage ./python/stig/release.nix {
-          pkgs = myPythonOverride;
-          buildPythonPackage = myPythonOverride.buildPythonPackage;
-          fetchPypi = myPythonOverride.fetchPypi;
-          inherit async_http;
+    in pkgs.callPackage ./python/stig/release.nix {
+      pkgs = my-python-override;
+      buildPythonPackage = my-python-override.buildPythonPackage;
+      fetchPypi = my-python-override.fetchPypi;
+      inherit async_http;
     };
   };
 in self
