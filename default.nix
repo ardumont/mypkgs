@@ -26,7 +26,6 @@ let
               openblas = super.openblas.overrideAttrs(old: {checkPhase = "";});
               execnet = super.execnet.overrideAttrs(old: {checkPhase = "";});
               sure = super.sure.overrideAttrs(old: {checkPhase = "";});
-              pytest = super.pytest.overrideAttrs(old: {checkPhase = "";});
               pytest-runner = super.pytest-runner.overrideAttrs(old: {checkPhase = "";});
               numpy = super.numpy.overrideAttrs(old: {checkPhase = "";});
             };
