@@ -16,7 +16,9 @@ let
       fetchPypi = packages.fetchPypi;
     };
     ardumont-pytools =
-      let my-python-override = packages.override {
+      let nixpkgs = import <nixpkgs-18.09> {};
+          packages = nixpkgs.pkgs.python36Packages;
+          my-python-override = packages.override {
             overrides = self: super: {
               pytest-xdist = super.pytest-xdist.overrideAttrs(old: {checkPhase = "";});
               mutagen = super.mutagen.overrideAttrs(old: {checkPhase = "";});
