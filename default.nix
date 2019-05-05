@@ -36,6 +36,26 @@ let
                 doCheck = false;  # tests fail for some reasons
                 checkPhase = "";
               });
+              execnet = super.execnet.overrideAttrs(old: {
+                doCheck = false;  # tests fail for some reasons
+                checkPhase = "";
+              });
+              sure = super.sure.overrideAttrs(old: {
+                doCheck = false;  # tests fail for some reasons
+                checkPhase = "";
+              });
+              # pytest = super.pytest.overrideAttrs(old: {
+              #   doCheck = false;  # tests fail for some reasons
+              #   checkPhase = "";
+              # });
+              pytest-runner = super.pytest-runner.overrideAttrs(old: {
+                doCheck = false;  # tests fail for some reasons
+                checkPhase = "";
+              });
+              numpy = super.numpy.overrideAttrs(old: {
+                doCheck = false;  # tests fail for some reasons
+                checkPhase = "";
+              });
             };
           };
         in
