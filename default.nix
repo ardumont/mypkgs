@@ -18,42 +18,15 @@ let
     ardumont-pytools =
       let my-python-override = packages.override {
             overrides = self: super: {
-              pytest-xdist = super.pytest-xdist.overrideAttrs(old: {
-                doCheck = false;  # tests fail for some reasons
-                checkPhase = "";
-              });
-              mutagen = super.mutagen.overrideAttrs(old: {
-                doCheck = false;  # tests fail for some reasons
-                checkPhase = "";
-              });
-              hypothesis = super.hypothesis.overrideAttrs(old: {
-                doCheck = false;  # tests fail for some reasons
-                checkPhase = "";
-              });
-              openblas = super.openblas.overrideAttrs(old: {
-                doCheck = false;  # tests fail for some reasons
-                checkPhase = "";
-              });
-              execnet = super.execnet.overrideAttrs(old: {
-                doCheck = false;  # tests fail for some reasons
-                checkPhase = "";
-              });
-              sure = super.sure.overrideAttrs(old: {
-                doCheck = false;  # tests fail for some reasons
-                checkPhase = "";
-              });
-              pytest = super.pytest.overrideAttrs(old: {
-                doCheck = false;  # tests fail for some reasons
-                checkPhase = "";
-              });
-              pytest-runner = super.pytest-runner.overrideAttrs(old: {
-                doCheck = false;  # tests fail for some reasons
-                checkPhase = "";
-              });
-              numpy = super.numpy.overrideAttrs(old: {
-                doCheck = false;  # tests fail for some reasons
-                checkPhase = "";
-              });
+              pytest-xdist = super.pytest-xdist.overrideAttrs(old: {checkPhase = "";});
+              mutagen = super.mutagen.overrideAttrs(old: {checkPhase = "";});
+              hypothesis = super.hypothesis.overrideAttrs(old: {checkPhase = "";});
+              openblas = super.openblas.overrideAttrs(old: {checkPhase = "";});
+              execnet = super.execnet.overrideAttrs(old: {checkPhase = "";});
+              sure = super.sure.overrideAttrs(old: {checkPhase = "";});
+              pytest = super.pytest.overrideAttrs(old: {checkPhase = "";});
+              pytest-runner = super.pytest-runner.overrideAttrs(old: {checkPhase = "";});
+              numpy = super.numpy.overrideAttrs(old: {checkPhase = "";});
             };
           };
         in
