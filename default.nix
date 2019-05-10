@@ -20,14 +20,17 @@ let
           packages = nixpkgs.pkgs.python36Packages;
           my-python-override = packages.override {
             overrides = self: super: {
-              pytest-xdist = super.pytest-xdist.overrideAttrs(old: {checkPhase = "";});
-              mutagen = super.mutagen.overrideAttrs(old: {checkPhase = "";});
-              hypothesis = super.hypothesis.overrideAttrs(old: {checkPhase = "";});
-              openblas = super.openblas.overrideAttrs(old: {checkPhase = "";});
-              execnet = super.execnet.overrideAttrs(old: {checkPhase = "";});
-              sure = super.sure.overrideAttrs(old: {checkPhase = "";});
-              pytest-runner = super.pytest-runner.overrideAttrs(old: {checkPhase = "";});
-              numpy = super.numpy.overrideAttrs(old: {checkPhase = "";});
+              cryptography = super.cryptography.overrideAttrs(old: {doCheck = false; checkPhase = "";});
+              pytest-xdist = super.pytest-xdist.overrideAttrs(old: {doCheck = false; checkPhase = "";});
+              mutagen = super.mutagen.overrideAttrs(old: {doCheck = false; checkPhase = "";});
+              hypothesis = super.hypothesis.overrideAttrs(old: {doCheck = false; checkPhase = "";});
+              openblas = super.openblas.overrideAttrs(old: {doCheck = false; checkPhase = "";});
+              execnet = super.execnet.overrideAttrs(old: {doCheck = false; checkPhase = "";});
+              sure = super.sure.overrideAttrs(old: {doCheck = false; checkPhase = "";});
+              site = super.site.overrideAttrs(old: {doCheck = false; checkPhase = "";});
+              pytest-runner = super.pytest-runner.overrideAttrs(old: {doCheck = false; checkPhase = "";});
+#              pytest = super.pytest.overrideAttrs(old: {doCheck = false; checkPhase = "";});
+              numpy = super.numpy.overrideAttrs(old: {doCheck = false; checkPhase = "";});
             };
           };
         in
