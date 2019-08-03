@@ -7,7 +7,7 @@
 let
   pkgs = import <nixpkgs> { inherit system; };
   callPackage = pkgs.lib.callPackagesWith (pkgs // self);
-  packages = pkgs.python36Packages;
+  packages = pkgs.python3Packages;
   self = rec {
     emacs-powerline = pkgs.callPackage ./emacs/emacs-powerline/release.nix { };
     # dependency for ardumont-pytools
@@ -15,31 +15,12 @@ let
       buildPythonPackage = packages.buildPythonPackage;
       fetchPypi = packages.fetchPypi;
     };
-    ardumont-pytools =
-      let nixpkgs = import <nixpkgs-18.09> {};
-          packages = nixpkgs.pkgs.python36Packages;
-          my-python-override = packages.override {
-            overrides = self: super: {
-              cryptography = super.cryptography.overrideAttrs(old: {doCheck = false; checkPhase = "";});
-              pytest-xdist = super.pytest-xdist.overrideAttrs(old: {doCheck = false; checkPhase = "";});
-              mutagen = super.mutagen.overrideAttrs(old: {doCheck = false; checkPhase = "";});
-              hypothesis = super.hypothesis.overrideAttrs(old: {doCheck = false; checkPhase = "";});
-              openblas = super.openblas.overrideAttrs(old: {doCheck = false; checkPhase = "";});
-              execnet = super.execnet.overrideAttrs(old: {doCheck = false; checkPhase = "";});
-              sure = super.sure.overrideAttrs(old: {doCheck = false; checkPhase = "";});
-              site = super.site.overrideAttrs(old: {doCheck = false; checkPhase = "";});
-              pytest-runner = super.pytest-runner.overrideAttrs(old: {doCheck = false; checkPhase = "";});
-#              pytest = super.pytest.overrideAttrs(old: {doCheck = false; checkPhase = "";});
-              numpy = super.numpy.overrideAttrs(old: {doCheck = false; checkPhase = "";});
-            };
-          };
-        in
-        pkgs.callPackage ./python/ardumont-pytools/release.nix {
-          pkgs = my-python-override;
-          buildPythonPackage = my-python-override.buildPythonPackage;
+    ardumont-pytools = pkgs.callPackage ./python/ardumont-pytools/release.nix {
+          pkgs = packages;
+          buildPythonPackage = packages.buildPythonPackage;
           pyexifinfo = pyexifinfo;
           inotify-tools = pkgs.inotify-tools;
-          mutagen = my-python-override.mutagen;
+          mutagen = packages.mutagen;
       };
     # dependency for xkeysnail
     inotify-simple = pkgs.callPackage ./python/inotify_simple/release.nix {
