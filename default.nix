@@ -16,12 +16,12 @@ let
       fetchPypi = packages.fetchPypi;
     };
     ardumont-pytools = pkgs.callPackage ./python/ardumont-pytools/release.nix {
-          pkgs = packages;
-          buildPythonPackage = packages.buildPythonPackage;
-          pyexifinfo = pyexifinfo;
-          inotify-tools = pkgs.inotify-tools;
-          mutagen = packages.mutagen;
-      };
+      pkgs = packages;
+      buildPythonPackage = packages.buildPythonPackage;
+      pyexifinfo = pyexifinfo;
+      inotify-tools = pkgs.inotify-tools;
+      mutagen = packages.mutagen;
+    };
     # dependency for xkeysnail
     inotify-simple = pkgs.callPackage ./python/inotify_simple/release.nix {
       buildPythonPackage = packages.buildPythonPackage;
