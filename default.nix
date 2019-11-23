@@ -15,12 +15,29 @@ let
       buildPythonPackage = packages.buildPythonPackage;
       fetchPypi = packages.fetchPypi;
     };
+    prometheus-client = pkgs.callPackage ./python/prometheus-client/release.nix {
+      pkgs = packages;
+      fetchPypi = packages.fetchPypi;
+      buildPythonPackage = packages.buildPythonPackage;
+    };
+    watchdog-gevent = pkgs.callPackage ./python/watchdog-gevent/release.nix {
+      pkgs = packages;
+      fetchPypi = packages.fetchPypi;
+      buildPythonPackage = packages.buildPythonPackage;
+    };
+    dramatiq = pkgs.callPackage ./python/dramatiq/release.nix {
+      pkgs = packages;
+      fetchPypi = packages.fetchPypi;
+      buildPythonPackage = packages.buildPythonPackage;
+      inherit prometheus-client watchdog-gevent;
+    };
     ardumont-pytools = pkgs.callPackage ./python/ardumont-pytools/release.nix {
       pkgs = packages;
       buildPythonPackage = packages.buildPythonPackage;
       pyexifinfo = pyexifinfo;
       inotify-tools = pkgs.inotify-tools;
       mutagen = packages.mutagen;
+      dramatiq = dramatiq;
     };
     # dependency for xkeysnail
     inotify-simple = pkgs.callPackage ./python/inotify_simple/release.nix {
