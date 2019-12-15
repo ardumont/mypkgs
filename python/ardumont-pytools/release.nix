@@ -5,17 +5,13 @@ buildPythonPackage rec {
 
   src = /home/tony/repo/private/ardumont-pytools;
 
-  doCheck = true;
+  doCheck = false;  # no test (bad me T.T)
 
   propagatedBuildInputs = with pkgs; [
     pyexifinfo
     click vcversioner pyinotify exifread python-dateutil
     tvdb_api tvnamer arrow pyaml inotify-tools mutagen
-    dramatiq pika
-  ];
-
-  checkInputs = with pkgs; [
-    pytest
+    dramatiq
   ];
 
   meta = {
