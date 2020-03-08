@@ -1,11 +1,7 @@
-{ system ? builtins.currentSystem }:
-
-# if we need for some reason nixpkgs-unstable, mutate the environment with
-# nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs-unstable
-# nix-channel --update
+{ system ? builtins.currentSystem, sources ? import ./nix/sources.nix }:
 
 let
-  pkgs = import <nixpkgs> { inherit system; };
+  pkgs = import sources.nixpkgs { inherit system; };
   callPackage = pkgs.lib.callPackagesWith (pkgs // self);
   my-python-override = pkgs.python3Packages.override {
     overrides = self: super: {
