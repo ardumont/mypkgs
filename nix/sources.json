@@ -12,15 +12,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
-        "branch": "nixpkgs-19.09",
+        "branch": "nixos-19.09",
         "description": "A read-only mirror of NixOS/nixpkgs tracking the released channels. Send issues and PRs to",
         "homepage": "https://github.com/NixOS/nixpkgs",
         "owner": "NixOS",
         "repo": "nixpkgs-channels",
-        "rev": "34c7eb7545d155cc5b6f499b23a7cb1c96ab4d59",
-        "sha256": "11z6ajj108fy2q5g8y4higlcaqncrbjm3dnv17pvif6avagw4mcb",
+        "rev": "68d2f8325c386fcb0ddbb466a91e053d2c09ddd2",
+        "sha256": "1kl24b2qsjcy8gllddkjxy5zrqdzrjzhydwi3lbncan0560f8aa8",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs-channels/archive/34c7eb7545d155cc5b6f499b23a7cb1c96ab4d59.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs-channels/archive/68d2f8325c386fcb0ddbb466a91e053d2c09ddd2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
