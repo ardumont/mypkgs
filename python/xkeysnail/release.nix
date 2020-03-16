@@ -2,11 +2,11 @@
 
 buildPythonPackage rec {
   pname = "xkeysnail";
-  version = "0.1.0";
+  version = "0.2.0";
 
    src = fetchPypi {
      inherit pname version;
-     sha256 = "4f20afcbebd533ca691f1c3672db6f27caa9a336556abc2a5799676851942062";
+     sha256 = "1zssbbd0qb9vpjj2jgw496x08qn08fapl55gm3pcw8bs8yf4kwlx";
    };
 
    propagatedBuildInputs = [
