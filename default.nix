@@ -3,84 +3,68 @@
 let
   pkgs = import sources.nixpkgs { inherit system; };
   callPackage = pkgs.lib.callPackagesWith (pkgs // self);
-  packages = pkgs.python3Packages;
+  python-packages = pkgs.python3Packages;
   self = rec {
     emacs-powerline = pkgs.callPackage ./emacs/emacs-powerline/release.nix { };
     # dependency for ardumont-pytools
     pyexifinfo = pkgs.callPackage ./python/pyexifinfo/release.nix {
-      buildPythonPackage = packages.buildPythonPackage;
-      fetchPypi = packages.fetchPypi;
+      pkgs = python-packages;
     };
     prometheus-client = pkgs.callPackage ./python/prometheus-client/release.nix {
-      pkgs = packages;
-      fetchPypi = packages.fetchPypi;
-      buildPythonPackage = packages.buildPythonPackage;
+      pkgs = python-packages;
     };
     watchdog-gevent = pkgs.callPackage ./python/watchdog-gevent/release.nix {
-      pkgs = packages;
-      fetchPypi = packages.fetchPypi;
-      buildPythonPackage = packages.buildPythonPackage;
+      pkgs = python-packages;
     };
     dramatiq = pkgs.callPackage ./python/dramatiq/release.nix {
-      pkgs = packages;
-      fetchPypi = packages.fetchPypi;
-      buildPythonPackage = packages.buildPythonPackage;
+      pkgs = python-packages;
       inherit prometheus-client watchdog-gevent;
     };
     ardumont-pytools = pkgs.callPackage ./python/ardumont-pytools/release.nix {
-      pkgs = packages;
-      buildPythonPackage = packages.buildPythonPackage;
+      pkgs = python-packages;
       pyexifinfo = pyexifinfo;
       inotify-tools = pkgs.inotify-tools;
-      mutagen = packages.mutagen;
+      mutagen = python-packages.mutagen;
       dramatiq = dramatiq;
     };
     # dependency for xkeysnail
     inotify-simple = pkgs.callPackage ./python/inotify_simple/release.nix {
-      buildPythonPackage = packages.buildPythonPackage;
-      fetchPypi = packages.fetchPypi;
-      inotify-tools = pkgs.inotify-tools;
+      pkgs = python-packages;
     };
     xkeysnail = pkgs.callPackage ./python/xkeysnail/release.nix {
-        pkgs = packages;
-        buildPythonPackage = packages.buildPythonPackage;
-        fetchPypi = packages.fetchPypi;
-        inotify-simple = inotify-simple;
-      };
+      pkgs = python-packages;
+      inotify-simple = inotify-simple;
+    };
     async_http = pkgs.callPackage ./python/async_http/release.nix {
-      pkgs = packages;
-      buildPythonPackage = packages.buildPythonPackage;
-      fetchPypi = packages.fetchPypi;
+      pkgs = python-packages;
     };
     stig = let
-      my-python-override = packages.override {
+      my-python-override = python-packages.override {
         overrides = self: super: {
           urwidtrees = super.urwidtrees.overrideAttrs (old: rec {
             version = "1.0.3.dev0";
-            src = packages.fetchPypi {
+            src = python-packages.fetchPypi {
               pname = old.pname;
               version = version;
               sha256 = "05sf9q5lvcazccwzxc4zl2xnxfds7sb9yis18z99p01nrljp868r";
             };
-            propagatedBuildInputs = old.propagatedBuildInputs ++ [ packages.mock ];
+            propagatedBuildInputs = old.propagatedBuildInputs ++ [ python-packages.mock ];
           });
           urwid = super.urwid.overrideAttrs (old: rec {
             version = "2.0.1";
-            src = packages.fetchPypi {
+            src = python-packages.fetchPypi {
               pname = old.pname;
               version = version;
               sha256 = "1g6cpicybvbananpjikmjk8npmjk4xvak1wjzji62wc600wkwkb4";
             };
             patches = [];
             doCheck = false;
-            # propagatedBuildInputs = old.propagatedBuildInputs ++ [ packages.mock ];
+            # propagatedBuildInputs = old.propagatedBuildInputs ++ [ python-packages.mock ];
           });
         };
       };
     in pkgs.callPackage ./python/stig/release.nix {
       pkgs = my-python-override;
-      buildPythonPackage = my-python-override.buildPythonPackage;
-      fetchPypi = my-python-override.fetchPypi;
       inherit async_http;
     };
   };

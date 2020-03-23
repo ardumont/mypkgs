@@ -1,10 +1,10 @@
-{ lib, pkgs, fetchPypi, buildPythonPackage }:
+{ lib, pkgs }:
 
-buildPythonPackage rec {
+pkgs.buildPythonPackage rec {
   pname = "prometheus_client";
   version = "0.7.1";
 
-  src = fetchPypi {
+  src = pkgs.fetchPypi {
     inherit pname version;
     sha256 = "sha256:1ni2yv4ixwz32nz39ckia76lvggi7m19y5f702w5qczbnfi29kbi";
   };

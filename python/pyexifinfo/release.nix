@@ -1,10 +1,10 @@
-{ lib, buildPythonPackage, fetchPypi, exiftool }:
+{ pkgs, lib, exiftool }:
 
-buildPythonPackage rec {
+pkgs.buildPythonPackage rec {
   pname = "pyexifinfo";
   version = "0.4.0";
 
-   src = fetchPypi {
+   src = pkgs.fetchPypi {
      inherit pname version;
      sha256 = "1jdxskyz2vwsiha8dm7pcg59srzcybwqh9dnwsxpgzlkqnrk92sp";
    };

@@ -1,10 +1,10 @@
-{ lib, pkgs, fetchPypi, buildPythonPackage, prometheus-client, watchdog-gevent }:
+{ lib, pkgs, prometheus-client, watchdog-gevent }:
 
-buildPythonPackage rec {
+pkgs.buildPythonPackage rec {
   pname = "dramatiq";
   version = "1.8.1";
 
-  src = fetchPypi {
+  src = pkgs.fetchPypi {
     inherit pname version;
     sha256 = "sha256:1f3yl6pgh089ahw8kk5fmngzxg7zzgbv1hkiv2pbzf9zjrs2ac1n";
   };

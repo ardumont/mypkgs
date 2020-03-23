@@ -1,6 +1,6 @@
-{ lib, pkgs, buildPythonPackage, pyexifinfo, inotify-tools, mutagen, dramatiq }:
+{ lib, pkgs, pyexifinfo, inotify-tools, mutagen, dramatiq }:
 
-buildPythonPackage rec {
+pkgs.buildPythonPackage rec {
   name = "ardumont-pytools";
 
   src = /home/tony/repo/private/ardumont-pytools;

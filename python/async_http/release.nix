@@ -1,10 +1,10 @@
-{ lib, pkgs, fetchPypi, buildPythonPackage }:
+{ lib, pkgs }:
 
-buildPythonPackage rec {
+pkgs.buildPythonPackage rec {
   pname = "async_http";
   version = "0.12";
 
-  src = fetchPypi {
+  src = pkgs.fetchPypi {
     inherit pname version;
     sha256 = "09b8bnhkyi0j1w5qyqvbksm098w39fy7wqfc5dmcbpipybdfpmgd";
   };

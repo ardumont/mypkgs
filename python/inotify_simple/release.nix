@@ -1,10 +1,10 @@
-{ lib, buildPythonPackage, fetchPypi, inotify-tools }:
+{ lib, pkgs, inotify-tools }:
 
-buildPythonPackage rec {
+pkgs.buildPythonPackage rec {
   pname = "inotify_simple";
   version = "1.1.8";
 
-   src = fetchPypi {
+   src = pkgs.fetchPypi {
      inherit pname version;
      sha256 = "1pfqvnynwh318cakldhg7535kbs02asjsgv6s0ki12i7fgfi0b7w";
    };

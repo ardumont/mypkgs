@@ -1,10 +1,10 @@
-{ lib, pkgs, buildPythonPackage, fetchPypi, inotify-simple }:
+{ lib, pkgs, inotify-simple }:
 
-buildPythonPackage rec {
+pkgs.buildPythonPackage rec {
   pname = "xkeysnail";
   version = "0.2.0";
 
-   src = fetchPypi {
+   src = pkgs.fetchPypi {
      inherit pname version;
      sha256 = "1zssbbd0qb9vpjj2jgw496x08qn08fapl55gm3pcw8bs8yf4kwlx";
    };

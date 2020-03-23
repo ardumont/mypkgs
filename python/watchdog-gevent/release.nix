@@ -1,10 +1,10 @@
-{ lib, pkgs, fetchPypi, buildPythonPackage }:
+{ lib, pkgs }:
 
-buildPythonPackage rec {
+pkgs.buildPythonPackage rec {
   pname = "watchdog-gevent";
   version = "0.1.1";
 
-  src = fetchPypi {
+  src = pkgs.fetchPypi {
     pname = "watchdog_gevent";
     inherit version;
     sha256 = "sha256:0jj2y8jm28vhjdpn1sx1v5a4vkm7aapvlwyws6pxxcsiqigfvp3i";
