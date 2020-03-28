@@ -2,7 +2,6 @@
 
 let
   pkgs = import sources.nixpkgs { inherit system; };
-  callPackage = pkgs.lib.callPackagesWith (pkgs // self);
   python-packages = pkgs.python3Packages;
   self = rec {
     emacs-powerline = pkgs.callPackage ./emacs/emacs-powerline/release.nix { };
