@@ -5,7 +5,11 @@ pkgs.buildPythonPackage rec {
 
   src = /home/tony/repo/private/ardumont-pytools;
 
-  doCheck = false;  # no test (bad me T.T)
+  doCheck = true;  # no test (bad me T.T)
+
+  checkInputs = with pkgs; [
+    pytest pytest-mock pika
+  ];
 
   propagatedBuildInputs = with pkgs; [
     pyexifinfo
