@@ -5,7 +5,7 @@ pkgs.buildPythonPackage rec {
 
   src = /home/tony/repo/private/ardumont-pytools;
 
-  doCheck = true;  # no test (bad me T.T)
+  doCheck = true;
 
   checkInputs = with pkgs; [
     pytest pytest-mock pika
