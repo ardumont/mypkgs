@@ -1,4 +1,4 @@
-{ system ? builtins.currentSystem, sources ? import ./nix/sources.nix }:
+{ system ? builtins.currentSystem, sources ? import ./nix/sources.nix, ... }:
 
 let
   pkgs = import sources.nixpkgs { inherit system; };
