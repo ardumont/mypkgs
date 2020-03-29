@@ -5,6 +5,7 @@ let
   python-packages = pkgs.python3Packages;
   self = rec {
     emacs-powerline = pkgs.callPackage ./emacs/emacs-powerline/release.nix { };
+    emacs-anzu = pkgs.callPackage ./emacs/emacs-anzu/release.nix { };
     # dependency for ardumont-pytools
     pyexifinfo = pkgs.callPackage ./python/pyexifinfo/release.nix {
       pkgs = python-packages;
