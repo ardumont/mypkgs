@@ -21,10 +21,10 @@ let
     };
     ardumont-pytools = pkgs.callPackage ./python/ardumont-pytools/release.nix {
       pkgs = python-packages;
-      pyexifinfo = pyexifinfo;
+      inherit pyexifinfo dramatiq;
       inotify-tools = pkgs.inotify-tools;
       mutagen = python-packages.mutagen;
-      dramatiq = dramatiq;
+      libav = pkgs.libav;
     };
     # dependency for xkeysnail
     inotify-simple = pkgs.callPackage ./python/inotify_simple/release.nix {

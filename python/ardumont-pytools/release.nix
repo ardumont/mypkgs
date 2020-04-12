@@ -1,4 +1,4 @@
-{ lib, pkgs, pyexifinfo, inotify-tools, mutagen, dramatiq }:
+{ lib, pkgs, pyexifinfo, inotify-tools, mutagen, dramatiq, libav }:
 
 pkgs.buildPythonPackage rec {
   name = "ardumont-pytools";
@@ -15,7 +15,7 @@ pkgs.buildPythonPackage rec {
     pyexifinfo
     click vcversioner pyinotify exifread python-dateutil
     tvdb_api tvnamer arrow pyaml inotify-tools mutagen
-    dramatiq
+    dramatiq libav
   ];
 
   meta = {
