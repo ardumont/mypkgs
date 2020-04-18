@@ -15,7 +15,7 @@ pkgs.buildPythonPackage rec {
     pyexifinfo
     click vcversioner pyinotify exifread python-dateutil
     tvdb_api tvnamer arrow pyaml inotify-tools mutagen
-    dramatiq libav
+    dramatiq libav setuptools
   ];
 
   meta = {
