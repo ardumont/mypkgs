@@ -5,6 +5,3 @@ NIXPKGS=$(HOME)/repo/public/nixpkgs
 
 show-deps:
 	niv show
-
-add-stable:
-	niv modify nixpkgs -a branch=nixpkgs-19.09
