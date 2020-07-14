@@ -2,8 +2,38 @@
 
 let
   pkgs = import sources.nixpkgs { inherit system; };
+  pkgs-unstable = import sources.nixpkgs-unstable { inherit system; };
   python-packages = pkgs.python3Packages;
   self = rec {
+    fmt = pkgs-unstable.fmt.overrideAttrs (oldAttrs: {
+      enableShared = true;
+    });
+
+    spdlog = pkgs-unstable.spdlog.overrideAttrs (oldAttrs: rec {
+      cmakeFlags = oldAttrs.cmakeFlags ++ [
+        "-DSPDLOG_FMT_EXTERNAL=ON"
+      ];
+
+      buildInputs = [
+        pkgs-unstable.fmt.dev
+        pkgs.pkg-config pkgs.systemd
+      ];
+    });  # ok
+
+    libupnp12 = pkgs-unstable.libupnp.overrideAttrs (oldAttrs: rec {
+      version = "1.12.1";
+      src = pkgs.fetchFromGitHub {
+        owner = "mrjimenez";
+        repo = "pupnp";
+        rev = "release-${version}";
+        sha256 = "sha256:0h7qfkin2l9riwskqn9zkn1l8z2gqfnanvaszjyxga2m5axz4n8c";
+      };
+      configureFlags = "--enable-reuseaddr";
+    });
+
+    gerbera = let libupnp = libupnp12;
+      in pkgs.callPackage ./media/gerbera/release.nix { inherit libupnp fmt spdlog; };
+
     emacs-powerline = pkgs.callPackage ./emacs/emacs-powerline/release.nix { };
     # dependency for ardumont-pytools
     pyexifinfo = pkgs.callPackage ./python/pyexifinfo/release.nix {
