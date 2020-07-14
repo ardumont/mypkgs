@@ -5,7 +5,6 @@
 , pkgs
 # options
 , enableDuktape ? true
-, enableMysql ? false
 , enableCurl ? true
 , enableTaglib ? true
 , enableLibmagic ? true
@@ -13,10 +12,8 @@
 , enableAvcodec ? false
 , enableLibexif ? true
 , enableExiv2 ? false
-, enableLiblastfm ? false
 , enableFFmpegThumbnailer ? false
 , enableInotifyTools ? true
-, enableSystemd ? false
 }:
 
 with stdenv.lib;
@@ -36,7 +33,6 @@ in stdenv.mkDerivation rec {
 
   cmakeFlags = [
     "-DWITH_JS=${optionOnOff enableDuktape}"
-    "-DWITH_MYSQL=${optionOnOff enableMysql}"
     "-DWITH_CURL=${optionOnOff enableCurl}"
     "-DWITH_TAGLIB=${optionOnOff enableTaglib}"
     "-DWITH_MAGIC=${optionOnOff enableLibmagic}"
@@ -44,10 +40,9 @@ in stdenv.mkDerivation rec {
     "-DWITH_AVCODEC=${optionOnOff enableAvcodec}"
     "-DWITH_EXIF=${optionOnOff enableLibexif}"
     "-DWITH_EXIV2=${optionOnOff enableExiv2}"
-    "-DWITH_LASTFM=${optionOnOff enableLiblastfm}"
     "-DWITH_FFMPEGTHUMBNAILER=${optionOnOff enableFFmpegThumbnailer}"
     "-DWITH_INOTIFY=${optionOnOff enableInotifyTools}"
-    "-DWITH_SYSTEMD=${optionOnOff enableSystemd}"
+    "-DWITH_SYSTEMD=OFF"
   ];
 
   # dontUseCmakeBuildDir = true;
@@ -61,8 +56,6 @@ in stdenv.mkDerivation rec {
     libupnp libuuid pugixml libiconv sqlite zlib fmt.dev
     spdlog
   ]
-  ++ optionals enableSystemd [ pkgs.systemd ]
-  ++ optionals enableMysql [ pkgs.libmysqlclient ]
   ++ optionals enableDuktape [ pkgs.duktape ]
   ++ optionals enableCurl [ pkgs.curl ]
   ++ optionals enableTaglib [ pkgs.taglib ]
@@ -71,7 +64,6 @@ in stdenv.mkDerivation rec {
   ++ optionals enableAvcodec [ pkgs.libav.dev ]
   ++ optionals enableLibexif [ pkgs.libexif ]
   ++ optionals enableExiv2 [ pkgs.exiv2 ]
-  ++ optionals enableLiblastfm [ pkgs.liblastfm ]
   ++ optionals enableInotifyTools [ pkgs.inotify-tools ]
   ++ optionals enableFFmpegThumbnailer [ pkgs.ffmpegthumbnailer ];
 
