@@ -34,6 +34,16 @@ let
     gerbera = let libupnp = libupnp12;
       in pkgs.callPackage ./media/gerbera/release.nix { inherit libupnp fmt spdlog; };
 
+    gerberaFull = let libupnp = libupnp12;
+      in pkgs.callPackage ./media/gerbera/release.nix {
+        inherit libupnp fmt spdlog;
+        # enableMysql = true;
+        enableAvcodec = true;
+        # enableLiblastfm = true;
+        enableFFmpegThumbnailer = true;
+        # enableSystemd = true;
+      };
+
     emacs-powerline = pkgs.callPackage ./emacs/emacs-powerline/release.nix { };
     # dependency for ardumont-pytools
     pyexifinfo = pkgs.callPackage ./python/pyexifinfo/release.nix {

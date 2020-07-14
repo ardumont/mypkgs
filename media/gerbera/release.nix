@@ -68,7 +68,7 @@ in stdenv.mkDerivation rec {
   ++ optionals enableTaglib [ pkgs.taglib ]
   ++ optionals enableLibmagic [ pkgs.file ]
   ++ optionals enableLibmatroska [ pkgs.libmatroska pkgs.libebml ]
-  ++ optionals enableAvcodec [ pkgs.libav ]
+  ++ optionals enableAvcodec [ pkgs.libav.dev ]
   ++ optionals enableLibexif [ pkgs.libexif ]
   ++ optionals enableExiv2 [ pkgs.exiv2 ]
   ++ optionals enableLiblastfm [ pkgs.liblastfm ]
