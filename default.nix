@@ -5,9 +5,7 @@ let
   pkgs-unstable = import sources.nixpkgs-unstable { inherit system; };
   python-packages = pkgs.python3Packages;
   self = rec {
-    fmt = pkgs-unstable.fmt.overrideAttrs (oldAttrs: {
-      enableShared = true;
-    });
+    fmt = pkgs-unstable.fmt;
 
     spdlog = pkgs-unstable.spdlog.overrideAttrs (oldAttrs: rec {
       cmakeFlags = oldAttrs.cmakeFlags ++ [
