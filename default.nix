@@ -31,7 +31,7 @@ let
     };
     dramatiq = pkgs.callPackage ./python/dramatiq/release.nix {
       pkgs = python-packages;
-      inherit prometheus-client watchdog-gevent;
+      inherit prometheus-client;
     };
     ardumont-pytools = pkgs.callPackage ./python/ardumont-pytools/release.nix {
       pkgs = python-packages;

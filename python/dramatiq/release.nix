@@ -1,4 +1,4 @@
-{ lib, pkgs, prometheus-client, watchdog-gevent }:
+{ lib, pkgs, prometheus-client }:
 
 pkgs.buildPythonPackage rec {
   pname = "dramatiq";
