@@ -18,27 +18,6 @@ let
       ];
     });  # ok
 
-    libupnp12 = pkgs-unstable.libupnp.overrideAttrs (oldAttrs: rec {
-      version = "1.12.1";
-      src = pkgs.fetchFromGitHub {
-        owner = "mrjimenez";
-        repo = "pupnp";
-        rev = "release-${version}";
-        sha256 = "sha256:0h7qfkin2l9riwskqn9zkn1l8z2gqfnanvaszjyxga2m5axz4n8c";
-      };
-      configureFlags = "--enable-reuseaddr";
-    });
-
-    gerbera = let libupnp = libupnp12;
-      in pkgs.callPackage ./media/gerbera/release.nix { inherit libupnp fmt spdlog; };
-
-    gerberaFull = let libupnp = libupnp12;
-      in pkgs.callPackage ./media/gerbera/release.nix {
-        inherit libupnp fmt spdlog;
-        enableAvcodec = true;
-        enableFFmpegThumbnailer = true;
-      };
-
     emacs-powerline = pkgs.callPackage ./emacs/emacs-powerline/release.nix { };
     # dependency for ardumont-pytools
     pyexifinfo = pkgs.callPackage ./python/pyexifinfo/release.nix {
