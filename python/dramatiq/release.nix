@@ -2,11 +2,11 @@
 
 pkgs.buildPythonPackage rec {
   pname = "dramatiq";
-  version = "1.8.1";
+  version = "1.9.0";
 
   src = pkgs.fetchPypi {
     inherit pname version;
-    sha256 = "sha256:1f3yl6pgh089ahw8kk5fmngzxg7zzgbv1hkiv2pbzf9zjrs2ac1n";
+    sha256 = "0f9qhxn2b95b1sbdaggy033b3cgrj6lkgldciclg197dn8d984l1";
   };
 
   propagatedBuildInputs = with pkgs; [
