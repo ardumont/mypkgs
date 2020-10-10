@@ -16,11 +16,11 @@
         "description": "A read-only mirror of NixOS/nixpkgs tracking the released channels. Send issues and PRs to",
         "homepage": "https://github.com/NixOS/nixpkgs",
         "owner": "NixOS",
-        "repo": "nixpkgs-channels",
+        "repo": "nixpkgs",
         "rev": "d6260a33e43a500528b2be834d3ee4ad45441a6a",
         "sha256": "18ailgn3d8smjdg66di3mg1q1l86s2s5ch856ifzy5kc3a224ssf",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs-channels/archive/d6260a33e43a500528b2be834d3ee4ad45441a6a.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/d6260a33e43a500528b2be834d3ee4ad45441a6a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-unstable": {
@@ -28,11 +28,11 @@
         "description": "A read-only mirror of NixOS/nixpkgs tracking the released channels. Send issues and PRs to",
         "homepage": "https://github.com/NixOS/nixpkgs",
         "owner": "NixOS",
-        "repo": "nixpkgs-channels",
+        "repo": "nixpkgs",
         "rev": "0260f04fe257f56b7221dccc427dc104de1e6d77",
         "sha256": "0k3vinxj4n96bjy1p8rk9rwdzyp4s0xsyc47wgraibnbiq9gpqzl",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs-channels/archive/0260f04fe257f56b7221dccc427dc104de1e6d77.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/0260f04fe257f56b7221dccc427dc104de1e6d77.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
