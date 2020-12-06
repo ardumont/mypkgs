@@ -20,25 +20,8 @@ let
 
     emacs-powerline = pkgs.callPackage ./emacs/emacs-powerline/release.nix { };
     # dependency for ardumont-pytools
-    pyexifinfo = pkgs.callPackage ./python/pyexifinfo/release.nix {
-      pkgs = python-packages;
-    };
-    prometheus-client = pkgs.callPackage ./python/prometheus-client/release.nix {
-      pkgs = python-packages;
-    };
     watchdog-gevent = pkgs.callPackage ./python/watchdog-gevent/release.nix {
       pkgs = python-packages;
-    };
-    dramatiq = pkgs.callPackage ./python/dramatiq/release.nix {
-      pkgs = python-packages;
-      inherit prometheus-client;
-    };
-    ardumont-pytools = pkgs.callPackage ./python/ardumont-pytools/release.nix {
-      pkgs = python-packages;
-      inherit pyexifinfo dramatiq;
-      inotify-tools = pkgs.inotify-tools;
-      mutagen = python-packages.mutagen;
-      libav = pkgs.libav;
     };
     # dependency for xkeysnail
     inotify-simple = pkgs.callPackage ./python/inotify_simple/release.nix {
