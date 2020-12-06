@@ -1,7 +1,7 @@
 NIXPKGS=$(HOME)/repo/public/nixpkgs
 
 %:
-	nix build -f default.nix $@
+	nix build #.$@
 
 show-deps:
 	niv show
