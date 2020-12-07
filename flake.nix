@@ -42,7 +42,7 @@
           emacs-powerline = all-pkgs.emacs-powerline;
           fmt = all-pkgs.fmt;
           spdlog = all-pkgs.spdlog;
-          watchdog-gevent = all-pkgs.watchdog-even;
+          watchdog-gevent = all-pkgs.watchdog-gevent;
           inotify-simple = all-pkgs.inotify-simple;
           xkeysnail = all-pkgs.xkeysnail;
           async_http = all-pkgs.async_http;
