@@ -21,7 +21,7 @@
       (system:
         let lib = nixpkgs.lib;
             pkgs = nixpkgs.legacyPackages.${system};
-            packages = (import ./default.nix { inherit pkgs; });
+            packages = (import ./default.nix { inherit pkgs lib; });
         in {
           overlay = self: super: packages;
           inherit packages;

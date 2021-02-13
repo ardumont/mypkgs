@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let python-packages = pkgs.python3Packages;
 in rec {
