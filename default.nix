@@ -15,8 +15,18 @@ in rec {
     ];
   });  # ok
 
-  guessit = pkgs.callPackage ./python/guessit/release.nix {
+  teletype = pkgs.callPackage ./python/teletype/release.nix {
     inherit lib;
+    pkgs = python-packages;
+  };
+
+  requests-cache = pkgs.callPackage ./python/requests-cache/release.nix {
+    inherit lib;
+    pkgs = python-packages;
+  };
+
+  mnamer = pkgs.callPackage ./python/mnamer/release.nix {
+    inherit lib teletype requests-cache;
     pkgs = python-packages;
   };
 
