@@ -15,6 +15,11 @@ in rec {
     ];
   });  # ok
 
+  guessit = pkgs.callPackage ./python/guessit/release.nix {
+    inherit lib;
+    pkgs = python-packages;
+  };
+
   emacs-powerline = pkgs.callPackage ./emacs/emacs-powerline/release.nix { };
   # dependency for ardumont-pytools
   watchdog-gevent = pkgs.callPackage ./python/watchdog-gevent/release.nix {
