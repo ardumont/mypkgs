@@ -1,16 +1,16 @@
-{ lib, pkgs, inotify-simple }:
+{ lib, pkgs, inotify-simple, appdirs }:
 
 pkgs.buildPythonPackage rec {
   pname = "xkeysnail";
-  version = "0.2.0";
+  version = "0.4.0";
 
    src = pkgs.fetchPypi {
      inherit pname version;
-     sha256 = "1zssbbd0qb9vpjj2jgw496x08qn08fapl55gm3pcw8bs8yf4kwlx";
+     sha256 = "1xyqp6yqxcwmxaqj86qcsiz0ly7bwr0a2w835myz909irhip3ngf";
    };
 
    propagatedBuildInputs = [
-     pkgs.xlib pkgs.evdev inotify-simple
+     pkgs.xlib pkgs.evdev inotify-simple appdirs
    ];
 
    doCheck = false;
