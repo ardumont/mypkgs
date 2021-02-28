@@ -1,4 +1,4 @@
-{ lib, pkgs, inotify-simple, appdirs }:
+{ lib, pkgs }:
 
 pkgs.buildPythonPackage rec {
   pname = "xkeysnail";
@@ -9,8 +9,8 @@ pkgs.buildPythonPackage rec {
      sha256 = "1xyqp6yqxcwmxaqj86qcsiz0ly7bwr0a2w835myz909irhip3ngf";
    };
 
-   propagatedBuildInputs = [
-     pkgs.xlib pkgs.evdev inotify-simple appdirs
+   propagatedBuildInputs = with pkgs; [
+     xlib evdev appdirs inotify-simple
    ];
 
    doCheck = false;

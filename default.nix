@@ -35,16 +35,8 @@ in rec {
   watchdog-gevent = pkgs.callPackage ./python/watchdog-gevent/release.nix {
     pkgs = python-packages;
   };
-  # dependency for xkeysnail
-  inotify-simple = pkgs.callPackage ./python/inotify_simple/release.nix {
-    pkgs = python-packages;
-  };
-  appdirs = pkgs.callPackage ./python/appdirs/release.nix {
-    pkgs = python-packages;
-  };
   xkeysnail = pkgs.callPackage ./python/xkeysnail/release.nix {
     pkgs = python-packages;
-    inherit inotify-simple appdirs;
   };
   async_http = pkgs.callPackage ./python/async_http/release.nix {
     pkgs = python-packages;
