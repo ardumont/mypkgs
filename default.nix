@@ -31,7 +31,6 @@ in rec {
   };
 
   emacs-powerline = pkgs.callPackage ./emacs/emacs-powerline/release.nix { };
-  # dependency for ardumont-pytools
   watchdog-gevent = pkgs.callPackage ./python/watchdog-gevent/release.nix {
     pkgs = python-packages;
   };
