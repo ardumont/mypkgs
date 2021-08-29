@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, emacs }:
+{ stdenv, fetchFromGitHub, emacs, lib, ... }:
 
 stdenv.mkDerivation rec {
   version = "1.0";
@@ -22,5 +22,5 @@ stdenv.mkDerivation rec {
     install *.el *.elc $out/share/emacs/site-lisp
   '';
 
-  meta.license = stdenv.lib.licenses.gpl3Plus;
+  meta.license = lib.licenses.gpl3Plus;
 }
