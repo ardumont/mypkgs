@@ -12,7 +12,7 @@
       type = "github";
       owner = "numtide";
       repo = "flake-utils";
-      ref = "master";
+      ref = "main";
     };
   };
 
