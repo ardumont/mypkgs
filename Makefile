@@ -1,7 +1,7 @@
 NIXPKGS=$(HOME)/repo/public/nixpkgs
 
 %:
-	nix build .#packages.x86_64-linux.$@
+	nix build --verbose .#packages.x86_64-linux.$@
 
 info:
 	nix flake info
