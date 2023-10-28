@@ -69,4 +69,6 @@ in rec {
     pkgs = my-python-override;
     inherit async_http;
   };
+
+  wee-most = pkgs.callPackage ./weechat/wee-most/release.nix { };
 }
