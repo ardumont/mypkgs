@@ -38,10 +38,7 @@ in stdenv.mkDerivation rec {
     })
   ];
 
-  passthru.scripts = [
-    "wee_most.py"
-    "wee_most_emojis"
-  ];
+  passthru.scripts = [ "wee_most.py" ];
 
   installPhase = ''
     mkdir -p $out/share

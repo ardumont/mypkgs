@@ -27,10 +27,7 @@ in stdenv.mkDerivation rec {
     })
   ];
 
-  passthru.scripts = [
-    "wee_matter.py"
-    "wee_matter/*.py"
-  ];
+  passthru.scripts = [ "wee_matter.py" ];
 
   installPhase = ''
     mkdir -p $out/share/wee_matter/
