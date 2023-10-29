@@ -21,12 +21,13 @@ in stdenv.mkDerivation rec {
   phases = [ "unpackPhase" "patchPhase" "installPhase" ];
 
   patches = [
-    (substituteAll {
-      src = ./wee-matter-env.patch;
-      # env = "foo";
-      env = "./wee_matter/:${wee-matter-env}/${python3Packages.python.sitePackages}";
-    })
+    ./wee-matter-env.patch
   ];
+
+  postPatch = ''
+    substituteInPlace main.py \
+      --replace "__WEE_MATTER_DEPS_PATH__" "${wee-matter-env}/${python3Packages.python.sitePackages}"
+  '';
 
   passthru.scripts = [
     "main.py"
@@ -35,6 +36,8 @@ in stdenv.mkDerivation rec {
 
   installPhase = ''
     mkdir -p $out/share/wee_matter/
+    substituteInPlace main.py \
+      --replace "__WEE_MATTER_DIRPATH__" "$out/share/wee_matter"
     install -D -m 644 main.py $out/share/wee_matter.py
     install -D -m 644 wee_matter/* $out/share/wee_matter/
   '';

@@ -1,12 +1,13 @@
 diff --git a/main.py b/main.py
-index c4785c9..4dd02af 100644
+index c4785c9..ee20840 100644
 --- a/main.py
 +++ b/main.py
-@@ -1,5 +1,8 @@
+@@ -1,5 +1,9 @@
  import weechat
  
 +import sys
-+sys.path.append('@env@')
++for path in ['__WEE_MATTER_DEPS_PATH__', '__WEE_MATTER_DIRPATH__']:
++    sys.path.append(path)
 +
  from wee_matter.room import (handle_multiline_message_cb, room_input_cb,
                               buffer_switch_cb, channel_completion_cb,
