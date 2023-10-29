@@ -1,0 +1,15 @@
+diff --git a/main.py b/main.py
+index c4785c9..727d5e1 100644
+--- a/main.py
++++ b/main.py
+@@ -22,6 +22,10 @@ from wee_matter.config import (config_reload_cb, server_section_write_default_cb
+                                server_section_create_option_cb, server_section_delete_option_cb,
+                                last_post_section_write_default_cb, last_post_section_create_option_cb,
+                                last_post_section_delete_option_cb, server_completion_cb)
++
++import sys
++sys.path.append('@env@')
++
+ import wee_matter
+ 
+ WEECHAT_SCRIPT_NAME = "wee_matter"

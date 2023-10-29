@@ -71,4 +71,6 @@ in rec {
   };
 
   wee-most = pkgs.callPackage ./weechat/wee-most/release.nix { };
+
+  wee-matter = pkgs.callPackage ./weechat/wee-matter/release.nix { };
 }
