@@ -24,7 +24,7 @@ in stdenv.mkDerivation rec {
     (substituteAll {
       src = ./wee-matter-env.patch;
       # env = "foo";
-      env = "${wee-matter-env}/${python3Packages.python.sitePackages}";
+      env = "./wee_matter/:${wee-matter-env}/${python3Packages.python.sitePackages}";
     })
   ];
 
