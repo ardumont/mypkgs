@@ -31,6 +31,8 @@ in stdenv.mkDerivation rec {
 
   installPhase = ''
     mkdir -p $out/share/wee_matter/
+    substituteInPlace main.py \
+      --replace "__WEE_MATTER_DIRPATH__" "$out/share/wee_matter/"
     install -D -m 644 main.py $out/share/wee_matter.py
     install -D -m 644 wee_matter/* $out/share/wee_matter/
   '';
